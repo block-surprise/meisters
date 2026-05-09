@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>検定開始 | マイクラマイスター検定</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="quiz-wrapper">
+        <!-- 進捗状況 -->
+        <div class="quiz-header">
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+            <span id="question-number">第 1 問 / 10</span>
+        </div>
+
+        <!-- 問題エリア -->
+        <section id="quiz-container" class="quiz-card">
+            <div class="question-box">
+                <h2 id="question-text">読み込み中...</h2>
+            </div>
+            
+            <div id="answer-options" class="options-grid">
+                <!-- ここにボタンが生成される -->
+            </div>
+        </section>
+
+        <!-- 結果表示（最初は隠しておく） -->
+        <section id="result-container" class="quiz-card hidden">
+            <h2 class="result-title">検定終了！</h2>
+            <div class="result-score">
+                <span id="score-val">0</span> / 10
+            </div>
+            <p id="result-rank-msg"></p>
+            <button onclick="location.href='index.html'" class="btn-primary">ホームへ戻る</button>
+        </section>
+    </main>
+
+    <script src="common.js"></script>
+    <script type="module" src="quiz.js"></script>
+</body>
+</html>
