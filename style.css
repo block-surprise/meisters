@@ -616,3 +616,4 @@ body {
 .menu-overlay.active {
     display: block;
 }
+.hidden { display: none !important; }
