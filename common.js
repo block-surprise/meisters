@@ -12,11 +12,10 @@ const firebaseConfig = {
     measurementId: "G-WKKZ8PTCKQ"
 };
 
-// 初期化
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// ヘッダーを読み込む関数
+// ヘッダー読み込み関数
 async function loadHeader() {
     try {
         const response = await fetch('header.html');
@@ -25,44 +24,44 @@ async function loadHeader() {
         
         if (placeholder) {
             placeholder.innerHTML = data;
-            // HTMLを流し込んだ直後に、中身のボタンやFirebaseのイベントを紐付ける
-            setupHeaderEvents();
+            // 注入後、少し待ってからイベントを設定（ブラウザのレンダリング待ち）
+            setTimeout(setupMenuEvents, 50);
         }
     } catch (error) {
-        console.error('Header load error:', error);
+        console.error('Header Load Error:', error);
     }
 }
 
-// ヘッダー内のイベントとFirebase監視をまとめたもの
-function setupHeaderEvents() {
-    // 1. ロゴクリックでホームへ
-    const logo = document.querySelector('.logo');
-    if (logo) {
-        logo.addEventListener('click', () => {
-            window.location.href = 'index.html';
-        });
-    }
-
-    // 2. メニュー開閉ロジック
-    const trigger = document.getElementById('menu-trigger'); // または menu-btn
-    const menu = document.getElementById('side-menu');     // または nav-menu
+// メニューとログインのイベント設定
+function setupMenuEvents() {
+    const trigger = document.getElementById('menu-trigger');
+    const menu = document.getElementById('side-menu');
     const overlay = document.getElementById('menu-overlay');
 
-    if (trigger && menu && overlay) {
-        const toggleMenu = () => {
+    // 反応しないのを防ぐため、古いイベントを一度リセットして確実に登録
+    if (trigger) {
+        trigger.onclick = null; // 念のため解除
+        trigger.onclick = (e) => {
+            e.preventDefault();
+            console.log("Menu Toggle Clicked"); // 動いているか確認用
             trigger.classList.toggle('active');
-            menu.classList.toggle('open');
-            overlay.classList.toggle('active');
+            if (menu) menu.classList.toggle('open');
+            if (overlay) overlay.classList.toggle('active');
         };
-        trigger.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
     }
 
-    // 3. ログイン状態監視
+    if (overlay) {
+        overlay.onclick = () => {
+            trigger.classList.remove('active');
+            menu.classList.remove('open');
+            overlay.classList.remove('active');
+        };
+    }
+
+    // ログイン監視（ログイン・ログアウトの出し分け）
     onAuthStateChanged(auth, (user) => {
         const loginItem = document.getElementById('menu-login-item');
         const logoutItem = document.getElementById('menu-logout-item');
-
         if (user) {
             if (loginItem) loginItem.classList.add('hidden');
             if (logoutItem) logoutItem.classList.remove('hidden');
@@ -71,20 +70,19 @@ function setupHeaderEvents() {
             if (logoutItem) logoutItem.classList.add('hidden');
         }
     });
-
-    // 4. ログアウト処理
-    const logoutBtn = document.getElementById('btn-menu-logout');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (confirm("ログアウトしますか？")) {
-                signOut(auth).then(() => {
-                    window.location.href = "index.html";
-                });
-            }
-        });
-    }
 }
+
+// ログアウト処理（document全体で監視）
+document.addEventListener('click', (e) => {
+    if (e.target.id === 'btn-menu-logout') {
+        e.preventDefault();
+        if (confirm("ログアウトしますか？")) {
+            signOut(auth).then(() => {
+                window.location.href = "index.html";
+            });
+        }
+    }
+});
 
 // 実行
 loadHeader();
