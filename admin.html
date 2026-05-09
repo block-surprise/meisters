@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>SURGE PRO | 問題登録</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🛠 問題一括登録ツール</h1>
+        <p>以下のエリアにJSON形式で問題を貼り付けてください。</p>
+        <textarea id="json-input" rows="15" style="width:100%; font-family:monospace;" placeholder='[
+  {
+    "world": 1,
+    "stage": 1,
+    "id": 1,
+    "question": "問題文",
+    "options": ["A", "B", "C", "D"],
+    "answerIndex": 0,
+    "level": "beginner"
+  },
+          
+  {
+    "world": 1,
+    "stage": 1,
+    "id": 1,
+    "question": "クリーパーが一番苦手な動物は？",
+    "options": ["オオカミ", "ヤマネコ", "ゴーレム", "ブタ"],
+    "answerIndex": 1,
+    "level": "beginner"
+  },
+  {
+    "world": 1,
+    "stage": 1,
+    "id": 2,
+    "question": "ネザーゲートを作るのに最低限必要な黒曜石の数は？",
+    "options": ["8個", "10個", "12個", "14個"],
+    "answerIndex": 1,
+    "level": "beginner"
+  },
+  {
+    "world": 1,
+    "stage": 1,
+    "id": 3,
+    "question": "満腹度が減らなくなる難易度は？",
+    "options": ["ピースフル", "イージー", "ノーマル", "ハード"],
+    "answerIndex": 0,
+    "level": "beginner"
+  },
+{
+    "world": 1,
+    "stage": 1,
+    "id": 4,
+    "question": "ダイヤモンドのツルハシでしか掘ることができないブロックは？",
+    "options": ["金鉱石", "黒曜石", "鉄ブロック", "エメラルド鉱石"],
+    "answerIndex": 1,
+    "level": "beginner"
+  },
+  {
+    "world": 1,
+    "stage": 1,
+    "id": 5,
+    "question": "村人と取引をするために必要なアイテムは？",
+    "options": ["金塊", "ダイヤモンド", "エメラルド", "鉄インゴット"],
+    "answerIndex": 2,
+    "level": "beginner"
+  },
+          {
+    "world": 2,
+    "stage": 1,
+    "id": 1,
+    "question": "ネザーでベッドを使って寝ようとするとどうなる？",
+    "options": ["リスポーン地点が固定される", "朝まで眠れる", "大爆発する", "何も起きない"],
+    "answerIndex": 2,
+    "level": "intermediate"
+  },
+  {
+    "world": 2,
+    "stage": 1,
+    "id": 2,
+    "question": "ピグリンが襲ってこなくなる装備の素材は？",
+    "options": ["鉄", "ダイヤモンド", "金", "ネザライト"],
+    "answerIndex": 2,
+    "level": "intermediate"
+  },
+  {
+    "world": 2,
+    "stage": 1,
+    "id": 3,
+    "question": "レッドストーン信号を15マス以上に延長するために必要なアイテムは？",
+    "options": ["コンパレータ", "リピーター", "オブザーバー", "レバー"],
+    "answerIndex": 1,
+    "level": "intermediate"
+  },
+          { "world": 1, "stage": 3, "id": 1, "question": "ゾンビ肉を食べたときに一定確率で発生するステータス異常は？", "options": ["毒", "空腹", "弱体化", "鈍ら"], "answerIndex": 1, "level": "beginner" },
+  { "world": 1, "stage": 3, "id": 2, "question": "釣りをしている時に稀に手に入る、道具の耐久力を回復させるエンチャントは？", "options": ["鋭さ", "効率強化", "修繕", "幸運"], "answerIndex": 2, "level": "beginner" },
+  { "world": 1, "stage": 3, "id": 3, "question": "村の英雄（不吉な予感）のイベントを発生させるために倒すべきMobは？", "options": ["ウィッチ", "略奪者の旗持ち", "エヴォーカー", "ヴェックス"], "answerIndex": 1, "level": "beginner" },
+  { "world": 1, "stage": 3, "id": 4, "question": "雪原バイオームで「水」が凍るのを防ぐために、水の上に置くべきものは？", "options": ["ハーフブロック", "砂利", "カーペット", "不透過ブロック"], "answerIndex": 3, "level": "beginner" },
+  { "world": 1, "stage": 3, "id": 5, "question": "コンパスが常に指し示している場所は？（磁石石を使わない場合）", "options": ["北", "ダイヤモンドがある場所", "初期リスポーン地点", "村"], "answerIndex": 2, "level": "beginner" },
+  { "world": 2, "stage": 2, "id": 1, "question": "暗視のポーションを作るために、奇妙なポーションに加える材料は？", "options": ["金のニンジン", "煌めくスイカ", "発酵したクモの目", "マグマクリーム"], "answerIndex": 0, "level": "intermediate" },
+  { "world": 2, "stage": 2, "id": 2, "question": "ガストの火球を跳ね返す方法は？", "options": ["盾で防ぐ", "水に潜る", "剣や素手で叩く", "ただ避ける"], "answerIndex": 2, "level": "intermediate" },
+  { "world": 2, "stage": 2, "id": 3, "question": "ウィザースケルトンの頭がドロップする確率は？（エンチャントなし）", "options": ["2.5%", "5.0%", "10.0%", "20.0%"], "answerIndex": 0, "level": "intermediate" },
+  { "world": 2, "stage": 2, "id": 4, "question": "ネザライトインゴット1個作るのに必要な「古代の残骸」の数は？", "options": ["2個", "4個", "8個", "16個"], "answerIndex": 1, "level": "intermediate" },
+  { "world": 2, "stage": 2, "id": 5, "question": "ソウルサンドの上を歩く速度を上げるエンチャントは？", "options": ["氷渡り", "水中歩行", "ソウルスピード", "落下耐性"], "answerIndex": 2, "level": "intermediate" },
+  { "world": 2, "stage": 2, "id": 6, "question": "耐火のポーションの材料は？", "options": ["ブレイズパウダー", "マグマクリーム", "ガストの涙", "ウサギの足"], "answerIndex": 1, "level": "intermediate" },
+  { "world": 2, "stage": 2, "id": 7, "question": "ブレイズの弱点となるアイテムは？", "options": ["矢", "雪玉", "卵", "火炎瓶"], "answerIndex": 1, "level": "intermediate" },
+  { "world": 2, "stage": 2, "id": 8, "question": "青い炎（ソウルファイア）が出る条件は、火の下が何ブロックの時？", "options": ["ソウルサンド", "ネザーラック", "マグマブロック", "黒石"], "answerIndex": 0, "level": "intermediate" },
+  { "world": 2, "stage": 2, "id": 9, "question": "ストライダーに乗って溶岩の上を移動するために必要なアイテムは？", "options": ["鞍と手綱", "歪んだキノコ付きの棒", "赤いキノコ付きの棒", "ボート"], "answerIndex": 1, "level": "intermediate" },
+  { "world": 2, "stage": 2, "id": 10, "question": "ネザーで「水」を設置しようとするとどうなる？", "options": ["氷になる", "黒曜石になる", "蒸発して消える", "そのまま設置できる"], "answerIndex": 2, "level": "intermediate" },
+
+  { "world": 3, "stage": 1, "id": 1, "question": "ジ・エンドでエンドクリスタルを破壊したときに起きることは？", "options": ["何も起きない", "大爆発する", "エンドマンが怒る", "水が出る"], "answerIndex": 1, "level": "advanced" },
+  { "world": 3, "stage": 1, "id": 2, "question": "エリトラの耐久力を回復するために金床で合成するアイテムは？", "options": ["革", "ファントムの膜", "羽", "ネザライトの欠片"], "answerIndex": 1, "level": "advanced" },
+  { "world": 3, "stage": 1, "id": 3, "question": "シュルカーの弾に当たったときに付与されるエフェクトは？", "options": ["盲目", "吐き気", "浮遊", "低速落下"], "answerIndex": 2, "level": "advanced" },
+  { "world": 3, "stage": 1, "id": 4, "question": "エンダードラゴンのブレス（息）を回収するために必要なアイテムは？", "options": ["バケツ", "ガラス瓶", "ボウル", "大釜"], "answerIndex": 1, "level": "advanced" },
+  { "world": 3, "stage": 1, "id": 5, "question": "リピーター（反復装置）の最大遅延は何ティック？", "options": ["2ティック", "4ティック", "8ティック", "10ティック"], "answerIndex": 1, "level": "advanced" },
+  { "world": 3, "stage": 1, "id": 6, "question": "コンパレーターが「比較モード」の時、側面からの入力が背面より大きいと出力はどうなる？", "options": ["そのまま出力される", "0（出力なし）になる", "合算される", "増幅される"], "answerIndex": 1, "level": "advanced" },
+  { "world": 3, "stage": 1, "id": 7, "question": "コマンドで、自分以外のすべてのプレイヤーを指定するセレクターは？", "options": ["@p", "@r", "@a", "@e"], "answerIndex": 2, "level": "advanced" },
+  { "world": 3, "stage": 1, "id": 8, "question": "BE版（統合版）で「ジャンプブリッジ」ができる条件は？", "options": ["スニーク中", "目の前のブロックの側面に置く", "何もない空間の前に置く", "落下中"], "answerIndex": 2, "level": "advanced" },
+  { "world": 3, "stage": 1, "id": 9, "question": "ビーコンのバフを最大にするために必要なピラミッドの段数は？", "options": ["2段", "3段", "4段", "5段"], "answerIndex": 2, "level": "advanced" },
+  { "world": 3, "stage": 1, "id": 10, "question": "地図（埋められた宝）が指し示す場所にあるブロックは、座標(X, Z)の何番目にあることが多い？", "options": ["(0, 0)", "(8, 8)", "(15, 15)", "(4, 4)"], "answerIndex": 1, "level": "advanced" },
+
+  { "world": 1, "stage": 4, "id": 1, "question": "村の家の中に置くと、村人が「司書」に就職するブロックは？", "options": ["樽", "書見台", "醸造台", "砥石"], "answerIndex": 1, "level": "beginner" },
+  { "world": 1, "stage": 4, "id": 2, "question": "湿地バイオームにのみ自然生成される、魔女が住んでいる建物は？", "options": ["魔女の家", "ウィッチの小屋", "沼の隠れ家", "紫の塔"], "answerIndex": 1, "level": "beginner" },
+  { "world": 1, "stage": 4, "id": 3, "question": "素手で壊したときに、何もドロップせずに消えてしまうブロックは？", "options": ["土", "石", "砂利", "木材"], "answerIndex": 1, "level": "beginner" },
+  { "world": 1, "stage": 4, "id": 4, "question": "羊の毛の色を「虹色」に変えることができる名札の名前は？", "options": ["Dinnerbone", "Grumm", "jeb_", "Toast"], "answerIndex": 2, "level": "beginner" },
+  { "world": 1, "stage": 4, "id": 5, "question": "ジャングルバイオームに生息する、種で手懐けることができる鳥は？", "options": ["ニワトリ", "オウム", "タカ", "カモメ"], "answerIndex": 1, "level": "beginner" },
+  { "world": 1, "stage": 4, "id": 6, "question": "雪玉を投げるとダメージを与えることができるモンスターは？", "options": ["クリーパー", "ゾンビ", "ブレイズ", "エンダーマン"], "answerIndex": 2, "level": "beginner" },
+  { "world": 1, "stage": 4, "id": 7, "question": "サボテンの上に置くことができるブロックは？", "options": ["砂", "松明", "看板", "基本的には何も置けない"], "answerIndex": 3, "level": "beginner" },
+  { "world": 1, "stage": 4, "id": 8, "question": "看板に書いた文字を光らせるために必要なアイテムは？", "options": ["松明", "輝く額縁", "輝くイカスミ", "グロウストーン"], "answerIndex": 2, "level": "beginner" },
+  { "world": 1, "stage": 4, "id": 9, "question": "ハサミを使ってカボチャをくり抜くと手に入るアイテムは？", "options": ["カボチャの種", "食料のカボチャ", "カボチャのパイ", "何も出ない"], "answerIndex": 0, "level": "beginner" },
+  { "world": 1, "stage": 4, "id": 10, "question": "水中で呼吸を続けるために設置すると便利な、隙間を作るアイテムは？", "options": ["ドア", "トラップドア", "フェンス", "ガラス"], "answerIndex": 0, "level": "beginner" },
+
+  { "world": 2, "stage": 3, "id": 1, "question": "海底神殿を守っている、ビームを撃ってくるモンスターは？", "options": ["ドラウンド", "ガーディアン", "イカ", "エルダーガーディアン"], "answerIndex": 1, "level": "intermediate" },
+  { "world": 2, "stage": 3, "id": 2, "question": "森の洋館にいるエヴォーカーを倒すと手に入る、復活のアイテムは？", "options": ["不死のトーテム", "金リンゴ", "命の結晶", "エンチャントされた金リンゴ"], "answerIndex": 0, "level": "intermediate" },
+  { "world": 2, "stage": 3, "id": 3, "question": "トライデントをドロップする可能性があるモンスターは？", "options": ["ゾンビ", "スケルトン", "ドラウンド", "ハスク"], "answerIndex": 2, "level": "intermediate" },
+  { "world": 2, "stage": 3, "id": 4, "question": "エンチャントテーブルの周りに本棚を最大いくつ置くとレベルが最大になる？", "options": ["12個", "15個", "20個", "30個"], "answerIndex": 1, "level": "intermediate" },
+  { "world": 2, "stage": 3, "id": 5, "question": "幸運のエンチャントが付いたツルハシで石炭を掘るとどうなる？", "options": ["石炭の塊が出る", "ドロップする石炭の数が増える", "経験値が減る", "掘るスピードが上がる"], "answerIndex": 1, "level": "intermediate" },
+  { "world": 2, "stage": 3, "id": 6, "question": "盾とクラフトすることで、盾に模様をつけることができるアイテムは？", "options": ["染料", "羊毛", "旗", "絵画"], "answerIndex": 2, "level": "intermediate" },
+  { "world": 2, "stage": 3, "id": 7, "question": "醸造台の燃料として必要なアイテムは？", "options": ["石炭", "マグマバケツ", "ブレイズパウダー", "火薬"], "answerIndex": 2, "level": "intermediate" },
+  { "world": 2, "stage": 3, "id": 8, "question": "ネザーで「リスポーンアンカー」を爆発させずに使うための燃料は？", "options": ["グロウストーン", "ネザーラック", "ブレイズロッド", "金インゴット"], "answerIndex": 0, "level": "intermediate" },
+  { "world": 2, "stage": 3, "id": 9, "question": "シルクタッチでしかアイテム化できない、ハチの家は？", "options": ["ハチの巣", "養蜂箱", "ハニーブロック", "ハニカム"], "answerIndex": 0, "level": "intermediate" },
+  { "world": 2, "stage": 3, "id": 10, "question": "名札で「Toast」と名付けると、見た目が変わる動物は？", "options": ["ヒツジ", "ウサギ", "ウマ", "クリーパー"], "answerIndex": 1, "level": "intermediate" },
+          
+  { "world": 3, "stage": 2, "id": 1, "question": "Java版において、ウィザーの体力が半分以下になった時に無効化される攻撃は？", "options": ["剣での攻撃", "矢での攻撃", "ポーションのダメージ", "爆発ダメージ"], "answerIndex": 1, "level": "advanced" },
+  { "world": 3, "stage": 2, "id": 2, "question": "マイクラの世界の「端」とされる、座標が約3000万マスの場所の名前は？", "options": ["世界の終わり", "ファーランズ", "ボーダー", "奈落"], "answerIndex": 2, "level": "advanced" },
+  { "world": 3, "stage": 2, "id": 3, "question": "爆発耐性が最も高い「設置可能な」ブロックは？（岩盤・エンドポータル枠を除く）", "options": ["泣く黒曜石", "古代の残骸", "黒曜石", "ネザライトブロック"], "answerIndex": 2, "level": "advanced" },
+  { "world": 3, "stage": 2, "id": 4, "question": "1.19アップデートで追加された、音に反応して現れる最強のMobは？", "options": ["ウォーデン", "アレイ", "カエル", "ウィザー"], "answerIndex": 0, "level": "advanced" },
+  { "world": 3, "stage": 2, "id": 5, "question": "醸造において「スプラッシュポーション」にするために必要な材料は？", "options": ["火薬", "ドラゴンブレス", "レッドストーン", "グロウストーン"], "answerIndex": 0, "level": "advanced" },
+  { "world": 3, "stage": 2, "id": 6, "question": "ピストンで押し出すことが「できない」ブロックは？", "options": ["ガラス", "スライムブロック", "黒曜石", "ハニーブロック"], "answerIndex": 2, "level": "advanced" },
+  { "world": 3, "stage": 2, "id": 7, "question": "クリーパーの爆発までの時間は、点火してから何秒？", "options": ["1.5秒", "3秒", "5秒", "10秒"], "answerIndex": 0, "level": "advanced" },
+  { "world": 3, "stage": 2, "id": 8, "question": "統合版において、コマンド `/fill` で一度に設置できる最大ブロック数は？", "options": ["10000", "32768", "65536", "無制限"], "answerIndex": 1, "level": "advanced" },
+  { "world": 3, "stage": 2, "id": 9, "question": "アイテムが地面に落ちてから自然に消滅（デスポーン）するまでの時間は？", "options": ["1分", "3分", "5分", "10分"], "answerIndex": 2, "level": "advanced" },
+  { "world": 3, "stage": 2, "id": 10, "question": "ビーコンを設置した際、空に向かって伸びる光を遮らないブロックは？", "options": ["土", "ガラス", "鉄ブロック", "木材"], "answerIndex": 1, "level": "advanced" },
+
+
+]'></textarea>
+        <br>
+        <button id="btn-upload" class="btn-primary">Firestoreへ送信！</button>
+        <div id="status-msg"></div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+
+        // Firebase設定（common.jsと同じもの）
+        const firebaseConfig = {
+            apiKey: "AIzaSyBz-HV0B2bkcwXb7Lv2gtQsqX-ldvb9NO0",
+            authDomain: "sentence-checker-1595d.firebaseapp.com",
+            projectId: "sentence-checker-1595d",
+            storageBucket: "sentence-checker-1595d.firebasestorage.app",
+            messagingSenderId: "987027897244",
+            appId: "1:987027897244:web:c80cba1feb361e41692659"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.getElementById('btn-upload').addEventListener('click', async () => {
+            const input = document.getElementById('json-input').value;
+            const status = document.getElementById('status-msg');
+            
+            try {
+                const quizData = JSON.parse(input);
+                status.innerText = "送信中...";
+
+                for (const item of quizData) {
+                    await addDoc(collection(db, "quizzes"), item);
+                }
+
+                status.innerText = "✅ 全てのデータの登録が完了しました！";
+                document.getElementById('json-input').value = "";
+            } catch (e) {
+                status.innerText = "❌ エラー: " + e.message;
+            }
+        });
+    </script>
+</body>
+</html>
