@@ -8,12 +8,12 @@
 </head>
 <body>
 
-    <!-- 共通ヘッダー -->
+   
     <div id="header-placeholder"></div>
 
-    <!-- メインコンテンツ -->
+  
     <main class="home-wrapper">
-        <!-- ヒーローエリア -->
+   
         <section class="hero-section">
             <div class="hero-content">
                 <h2 class="hero-copy">君の知識を、<br>最強の武器に。</h2>
@@ -21,7 +21,7 @@
             </div>
         </section>
 
-        <!-- メインメニュー（タイル） -->
+       
         <div class="bento-container">
             <a href="quiz.html?lv=1" class="tile card-green">
                 <span class="badge">Lv.1</span>
@@ -40,30 +40,21 @@
                 <h3>上級検定</h3>
                 <p>コマンドと技術。真の達人向け。</p>
             </a>
-
-            <!-- 動的な情報タイル -->
-            <div class="tile card-stats">
-                <h3>現在のステータス</h3>
-                <p id="user-status">ログインして確認</p>
-            </div>
-
-            <!-- 広告枠（最初から確保しておくのがコツ） -->
-            <div class="tile card-ad">
-                <p class="ad-label">ADVERTISEMENT</p>
-                <div class="ad-content">ここに広告</div>
-            </div>
         </div>
 
    
+
 <section class="user-status-section">
-    <div class="status-card">
-        <div class="status-info">
-            <span class="label">YOUR RANK</span>
-            <h3 id="current-rank">アイアン・マイスター</h3>
-            <p>次のランク「ゴールド」まで あと3問正解！</p>
+    <a href="auth.html" id="rank-link" class="status-link">
+        <div class="status-card" id="status-card-content">
+            <div class="status-info">
+                <span class="label">YOUR STATUS</span>
+                <h3 id="current-rank">読み込み中...</h3>
+                <p id="rank-message">情報を取得しています</p>
+            </div>
+            <div class="status-action-icon">👉</div>
         </div>
-        <a href="mypage.html" class="btn-outline">詳細を見る</a>
-    </div>
+    </a>
 </section>
 
         <section class="guide-section">
