@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホーム | マイクラマイスター検定</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FirebaseのSDK（必要に応じて追加） -->
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main class="home-container">
+        <section class="hero">
+            <p class="hero-subtitle">君の知識をブロック化せよ</p>
+            <div class="hero-image">
+                <!-- マイクラ風のイラストやロゴを配置 -->
+            </div>
+        </section>
+
+        <section class="menu-grid">
+            <a href="quiz.html?lv=easy" class="menu-tile beginners">
+                <span class="tile-icon">🌱</span>
+                <h3>初級検定</h3>
+                <p>サバイバルの基本</p>
+            </a>
+            <a href="quiz.html?lv=normal" class="menu-tile intermediate">
+                <span class="tile-icon">⚔️</span>
+                <h3>中級検定</h3>
+                <p>ネザーと冒険の知識</p>
+            </a>
+            <a href="quiz.html?lv=hard" class="menu-tile advanced">
+                <span class="tile-icon">💎</span>
+                <h3>上級検定</h3>
+                <p>コマンドと技術の極致</p>
+            </a>
+        </section>
+
+        <section class="info-tiles">
+            <div class="info-tile">
+                <h4>本日の殿堂入り</h4>
+                <p id="top-user">読み込み中...</p>
+            </div>
+            <div class="info-tile">
+                <h4>広告</h4>
+                <div class="ad-placeholder">ここにAdSense</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 3. スクリプト（ヘッダー読み込みと共通処理） -->
+    <script src="common.js"></script>
+</body>
+</html>
