@@ -255,3 +255,107 @@ body {
     font-size: 0.8rem;
     color: #999;
 }
+
+/* リンクとしての見た目を整える */
+.status-link {
+    text-decoration: none;
+    display: block;
+    margin: 40px 0;
+    transition: transform 0.2s ease;
+}
+
+.status-link:hover {
+    transform: translateY(-5px);
+}
+
+.status-card {
+    background: linear-gradient(135deg, #ffffff, #f9f9f9); /* 白系グラデーション */
+    color: var(--text-main);
+    padding: 25px 30px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ログインしていない時の特別感を出したいなら */
+.status-link[href="auth.html"] .status-card {
+    border: 2px dashed var(--mc-green); /* ログイン前は点線にして「未完成感」を出す */
+}
+
+.label {
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: var(--mc-green);
+    letter-spacing: 1px;
+}
+
+#current-rank {
+    margin: 5px 0;
+    font-size: 1.5rem;
+}
+
+#rank-message {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-sub);
+}
+
+.status-action-icon {
+    font-size: 1.2rem;
+    background: #f0f0f0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.btn-google {
+    width: 100%;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 20px;
+    transition: background 0.2s;
+}
+.btn-google:hover { background: #f9f9f9; }
+.btn-google img { width: 18px; }
+
+.separator {
+    display: flex;
+    align-items: center;
+    color: #999;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+}
+.separator::before, .separator::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+    margin: 0 10px;
+}
+
+.auth-switch {
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+.btn-sub {
+    background: none;
+    border: none;
+    color: var(--mc-green);
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+}
