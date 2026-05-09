@@ -1,22 +1,20 @@
-/* --- 変数の定義 (カラーパレット) --- */
+
 :root {
-    --bg-color: #ffffff;       /* 背景を完全な白に */
-    --card-bg: #ffffff;       /* カードも白 */
-    --header-bg: #ffffff;     /* ヘッダーも白 */
-    --text-main: #222222;     /* 文字は少し強めの黒で視認性アップ */
-    --text-sub: #666666;      /* 補足情報はグレー */
-    
-    /* マイクラ・コンセプトカラー（白背景で映えるよう少し鮮やかに） */
+    --bg-color: #ffffff;       
+    --card-bg: #ffffff;       
+    --header-bg: #ffffff;     
+    --text-main: #222222;     
+    --text-sub: #666666;      
     --mc-green: #2e7d32;      
     --mc-iron: #757575;       
     --mc-diamond: #00acc1;    
     --mc-gold: #f9a825;       
     
-    --border-color: #eeeeee;  /* 境界線はごく薄く */
+    --border-color: #eeeeee; 
     --accent-blue: #007aff;   
 }
 
-/* --- 全体のリセットとベース設定 --- */
+
 * {
     box-sizing: border-box;
 }
@@ -30,10 +28,10 @@ body {
     line-height: 1.6;
 }
 
-/* --- ヘッダーのスタイル --- */
+
 .main-header {
     background-color: var(--header-bg);
-    border-bottom: 1px solid var(--border-color); /* 線を細く */
+    border-bottom: 1px solid var(--border-color); 
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -49,7 +47,6 @@ body {
     height: 60px;
 }
 
-/* 各パーツがズレないよう幅を確保 */
 .header-left, .header-right {
     flex: 1;
     display: flex;
@@ -60,7 +57,7 @@ body {
 
 .main-title {
     font-size: 1.1rem;
-    font-weight: 800; /* 少し太めに */
+    font-weight: 800; 
     margin: 0;
     color: var(--text-main);
 }
@@ -88,7 +85,6 @@ body {
     border: 1px solid var(--border-color);
 }
 
-/* --- ホーム画面のレイアウト --- */
 .home-wrapper {
     max-width: 1000px;
     margin: 0 auto;
@@ -96,7 +92,7 @@ body {
 }
 
 .hero-section {
-    background-color: #fafafa; /* ここだけわずかに色を変えて奥行きを出す */
+    background-color: #fafafa; 
     border-radius: 12px;
     padding: 60px 20px;
     margin-bottom: 30px;
@@ -111,7 +107,7 @@ body {
     color: var(--text-main);
 }
 
-/* 弁当箱（Bento Grid）レイアウト */
+
 .bento-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -125,7 +121,6 @@ body {
     text-decoration: none;
     color: var(--text-main);
     border: 1px solid var(--border-color);
-    /* 影を柔らかくしてモダンに */
     box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     transition: all 0.2s ease;
 }
@@ -150,7 +145,7 @@ body {
     margin-bottom: 12px;
 }
 
-/* --- ログインページ --- */
+
 .auth-container {
     display: flex;
     justify-content: center;
@@ -192,3 +187,71 @@ body {
 }
 
 .hidden { display: none !important; }
+
+
+.section-title {
+    text-align: center;
+    margin: 60px 0 30px;
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+
+.status-card {
+    background: linear-gradient(135deg, #2e7d32, #1b5e20); /* ここだけ少しマイクラ色 */
+    color: white;
+    padding: 30px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 0;
+}
+.btn-outline {
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+.guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+.step {
+    text-align: center;
+    padding: 20px;
+}
+.step-num {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #eee;
+    margin-bottom: -15px;
+}
+.step h4 { margin-top: 0; }
+
+.main-footer {
+    background: #fafafa;
+    border-top: 1px solid #eee;
+    padding: 40px 20px;
+    margin-top: 100px;
+    text-align: center;
+}
+.footer-links {
+    margin: 20px 0;
+}
+.footer-links a {
+    margin: 0 10px;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.copyright {
+    font-size: 0.8rem;
+    color: #999;
+}
