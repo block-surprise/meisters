@@ -1,49 +1,50 @@
-// Firebaseの設定（自分のプロジェクトのものに書き換えてね）
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  // ...
-};
-firebase.initializeApp(firebaseConfig);
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
 
-const auth = firebase.auth();
+// あなたのFirebase設定
+const firebaseConfig = {
+  apiKey: "AIzaSyBz-HV0B2bkcwXb7Lv2gtQsqX-ldvb9NO0",
+  authDomain: "sentence-checker-1595d.firebaseapp.com",
+  projectId: "sentence-checker-1595d",
+  storageBucket: "sentence-checker-1595d.firebasestorage.app",
+  messagingSenderId: "987027897244",
+  appId: "1:987027897244:web:c80cba1feb361e41692659",
+  measurementId: "G-WKKZ8PTCKQ"
+};
+
+// 初期化
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
 const loadingArea = document.getElementById('auth-loading');
 const formArea = document.getElementById('auth-form');
 
-// ログイン状態を監視
-auth.onAuthStateChanged((user) => {
+// 1. ログイン状態の監視と振り分け
+onAuthStateChanged(auth, (user) => {
     if (user) {
-        // ログイン済みの場合 → マイページ(mypage.html)へリダイレクト
+        // ログイン済みならマイページへ
         window.location.href = "mypage.html";
     } else {
-        // 未ログインの場合 → ローディングを消してフォームを表示
-        loadingArea.classList.add('hidden');
-        formArea.classList.remove('hidden');
+        // 未ログインならフォームを表示
+        if(loadingArea) loadingArea.classList.add('hidden');
+        if(formArea) formArea.classList.remove('hidden');
     }
 });
 
-// ログイン・登録の切り替えロジック
-let isLoginMode = true;
-const btnSwitch = document.getElementById('btn-switch');
+// 2. ログイン・登録処理
 const btnMain = document.getElementById('btn-main');
-const authTitle = document.getElementById('auth-title');
-
-btnSwitch.addEventListener('click', () => {
-    isLoginMode = !isLoginMode;
-    authTitle.innerText = isLoginMode ? "ログイン" : "新規登録";
-    btnMain.innerText = isLoginMode ? "ログイン" : "登録する";
-    btnSwitch.innerText = isLoginMode ? "新規登録へ" : "ログインへ";
-});
-
-// 実行処理（ボタンクリックでFirebase Authを叩く）
-btnMain.addEventListener('click', () => {
+btnMain.addEventListener('click', async () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    const isLoginMode = document.getElementById('auth-title').innerText === "ログイン";
 
-    if (isLoginMode) {
-        auth.signInWithEmailAndPassword(email, password).catch(err => alert(err.message));
-    } else {
-        auth.createUserWithEmailAndPassword(email, password).catch(err => alert(err.message));
+    try {
+        if (isLoginMode) {
+            await signInWithEmailAndPassword(auth, email, password);
+        } else {
+            await createUserWithEmailAndPassword(auth, email, password);
+        }
+    } catch (error) {
+        alert("エラーが発生しました: " + error.message);
     }
 });
