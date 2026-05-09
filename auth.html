@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>アカウント | マイクラマイスター検定</title>
     <link rel="stylesheet" href="style.css">
-    <!-- ⚠️ ここにあった <script src="...compat.js"> は不要なので削除しました -->
 </head>
 <body>
 
     <div id="header-placeholder"></div>
 
     <main class="auth-container">
-        <!-- 判定中 -->
+   
         <div id="auth-loading" class="auth-card">
             <div class="spinner"></div>
             <p>確認中...</p>
         </div>
 
-        <!-- フォーム本体 -->
+   
         <div id="auth-form" class="auth-card hidden">
             <h2 id="auth-title">ログイン</h2>
             
@@ -43,10 +42,8 @@
         </div>
     </main>
 
-    <!-- 共通パーツ読み込み用 -->
+
     <script src="common.js"></script>
-    
-    <!-- ⚠️ ここを auth.js に変更！ -->
     <script type="module" src="auth.js"></script>
 </body>
 </html>
