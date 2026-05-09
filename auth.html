@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アカウント | マイクラマイスター検定</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDKの読み込み（CDN経由） -->
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main class="auth-container">
+        <!-- 判定中のローディング表示 -->
+        <div id="auth-loading" class="auth-card">
+            <div class="spinner"></div>
+            <p>確認中...</p>
+        </div>
+
+        <!-- 未ログイン時に表示するフォーム（初期状態は隠す） -->
+        <div id="auth-form" class="auth-card hidden">
+            <h2 id="auth-title">ログイン</h2>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="メールアドレス">
+                <input type="password" id="password" placeholder="パスワード">
+            </div>
+            
+            <button id="btn-main" class="btn-primary">ログイン</button>
+            
+            <div class="auth-switch">
+                <p id="switch-text">アカウントをお持ちでないですか？</p>
+                <button id="btn-switch" class="btn-sub">新規登録へ</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="common.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
