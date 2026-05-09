@@ -1,0 +1,41 @@
+/* 全体のスタイル */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  background-color: #313335; /* マイクラのUIっぽい色 */
+  color: white;
+  height: 60px;
+}
+
+/* タイトルを中央に */
+.main-title {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* ハンバーガーメニューの見た目 */
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.line {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+}
+
+/* アカウントアイコン */
+.user-icon-circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #555;
+  background-size: cover;
+  background-position: center;
+}
