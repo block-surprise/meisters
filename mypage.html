@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイページ | マイくらマイスター検定</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main class="mypage-wrapper">
+        <!-- ユーザー基本情報 -->
+        <section class="user-profile-card">
+            <div class="user-info-flex">
+                <div id="user-photo" class="large-icon"></div>
+                <div class="user-text">
+                    <h2 id="display-name">読み込み中...</h2>
+                    <p id="user-email">----@----</p>
+                </div>
+            </div>
+            <button id="btn-logout" class="btn-logout">ログアウト</button>
+        </section>
+
+        <!-- ランク・進捗エリア -->
+        <div class="stats-grid">
+            <div class="stat-box">
+                <span class="stat-label">現在の称号</span>
+                <div class="rank-display">
+                    <span id="rank-badge" class="badge-icon">🛡️</span>
+                    <h3 id="rank-name">アイアン</h3>
+                </div>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">全問正解数</span>
+                <p class="stat-value"><span id="total-correct">0</span> / 100</p>
+            </div>
+        </div>
+
+        <!-- 獲得バッジ・コレクション -->
+        <section class="badge-section">
+            <h3 class="sub-title">獲得済みバッジ</h3>
+            <div class="badge-list" id="badge-container">
+                <!-- 取得したバッジがここに並ぶ -->
+                <div class="badge-item locked"><span>初級</span></div>
+                <div class="badge-item locked"><span>中級</span></div>
+                <div class="badge-item locked"><span>上級</span></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="common.js"></script>
+    <script type="module" src="mypage.js"></script>
+</body>
+</html>
