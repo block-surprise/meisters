@@ -1,19 +1,19 @@
 /* --- 変数の定義 (カラーパレット) --- */
 :root {
-    --bg-color: #f0f2f5;       /* サイト全体の背景（薄いグレー） */
-    --card-bg: #ffffff;       /* カードやタイルの背景 */
-    --header-bg: #ffffff;     /* ヘッダーの背景 */
-    --text-main: #2c3e50;     /* メインの文字色 */
-    --text-sub: #7f8c8d;      /* 補足情報の文字色 */
+    --bg-color: #ffffff;       /* 背景を完全な白に */
+    --card-bg: #ffffff;       /* カードも白 */
+    --header-bg: #ffffff;     /* ヘッダーも白 */
+    --text-main: #222222;     /* 文字は少し強めの黒で視認性アップ */
+    --text-sub: #666666;      /* 補足情報はグレー */
     
-    /* マイクラ・コンセプトカラー */
-    --mc-green: #388e3c;      /* 草ブロック：初級 */
-    --mc-iron: #757575;       /* 鉄ブロック：中級 */
-    --mc-diamond: #0097a7;    /* ダイヤ：上級 */
-    --mc-gold: #fbc02d;       /* 金：ランキング用 */
+    /* マイクラ・コンセプトカラー（白背景で映えるよう少し鮮やかに） */
+    --mc-green: #2e7d32;      
+    --mc-iron: #757575;       
+    --mc-diamond: #00acc1;    
+    --mc-gold: #f9a825;       
     
-    --border-color: #e0e0e0;  /* 境界線 */
-    --accent-blue: #3498db;   /* リンクやボタン */
+    --border-color: #eeeeee;  /* 境界線はごく薄く */
+    --accent-blue: #007aff;   
 }
 
 /* --- 全体のリセットとベース設定 --- */
@@ -26,14 +26,14 @@ body {
     padding: 0;
     background-color: var(--bg-color);
     color: var(--text-main);
-    font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Meiryo", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
 }
 
-/* --- ヘッダー (header.html) のスタイル --- */
+/* --- ヘッダーのスタイル --- */
 .main-header {
     background-color: var(--header-bg);
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color); /* 線を細く */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -45,15 +45,24 @@ body {
     align-items: center;
     max-width: 1000px;
     margin: 0 auto;
-    padding: 10px 20px;
+    padding: 0 20px;
     height: 60px;
 }
 
+/* 各パーツがズレないよう幅を確保 */
+.header-left, .header-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.header-right { justify-content: flex-end; }
+.header-center { flex: 2; text-align: center; }
+
 .main-title {
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.1rem;
+    font-weight: 800; /* 少し太めに */
     margin: 0;
-    color: var(--mc-green); /* タイトルをマイクラ色に */
+    color: var(--text-main);
 }
 
 .hamburger {
@@ -65,27 +74,21 @@ body {
 
 .line {
     display: block;
-    width: 25px;
-    height: 3px;
+    width: 22px;
+    height: 2px;
     background-color: var(--text-main);
-    margin: 4px 0;
-    border-radius: 2px;
+    margin: 5px 0;
 }
 
 .user-icon-circle {
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    background-color: var(--border-color);
-    background-size: cover;
-    background-position: center;
-    border: 2px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #f5f5f5;
+    border: 1px solid var(--border-color);
 }
 
-/* --- ホーム画面 (index.html) のレイアウト --- */
+/* --- ホーム画面のレイアウト --- */
 .home-wrapper {
     max-width: 1000px;
     margin: 0 auto;
@@ -93,18 +96,19 @@ body {
 }
 
 .hero-section {
-    background-color: var(--card-bg);
-    border-radius: 15px;
-    padding: 40px 20px;
+    background-color: #fafafa; /* ここだけわずかに色を変えて奥行きを出す */
+    border-radius: 12px;
+    padding: 60px 20px;
     margin-bottom: 30px;
     text-align: center;
-    border-bottom: 5px solid var(--border-color);
+    border: 1px solid var(--border-color);
 }
 
 .hero-copy {
     font-size: 1.8rem;
+    font-weight: 900;
     margin-bottom: 10px;
-    color: var(--mc-green);
+    color: var(--text-main);
 }
 
 /* 弁当箱（Bento Grid）レイアウト */
@@ -116,82 +120,75 @@ body {
 
 .tile {
     background-color: var(--card-bg);
-    padding: 25px;
-    border-radius: 12px;
+    padding: 30px;
+    border-radius: 16px;
     text-decoration: none;
     color: var(--text-main);
     border: 1px solid var(--border-color);
-    border-bottom: 6px solid var(--border-color);
-    transition: transform 0.1s, border-bottom 0.1s;
-    position: relative;
-    overflow: hidden;
+    /* 影を柔らかくしてモダンに */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    transition: all 0.2s ease;
 }
 
 .tile:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.06);
 }
 
-.tile:active {
-    transform: translateY(3px);
-    border-bottom: 2px solid var(--border-color);
-}
-
-.card-green { border-left: 10px solid var(--mc-green); }
-.card-iron { border-left: 10px solid var(--mc-iron); }
-.card-diamond { border-left: 10px solid var(--mc-diamond); }
+.card-green { border-top: 6px solid var(--mc-green); }
+.card-iron { border-top: 6px solid var(--mc-iron); }
+.card-diamond { border-top: 6px solid var(--mc-diamond); }
 
 .badge {
-    background: #333;
-    color: white;
-    padding: 3px 10px;
+    background: #f0f0f0;
+    color: #555;
+    padding: 4px 12px;
     font-size: 0.7rem;
-    border-radius: 20px;
+    font-weight: bold;
+    border-radius: 6px;
     display: inline-block;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
-/* --- ログインページ (auth.html) --- */
+/* --- ログインページ --- */
 .auth-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 120px);
-    padding: 20px;
+    min-height: calc(100vh - 100px);
 }
 
 .auth-card {
     background: var(--card-bg);
-    padding: 40px 30px;
+    padding: 40px;
     border-radius: 20px;
     width: 100%;
-    max-width: 400px;
+    max-width: 380px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     border: 1px solid var(--border-color);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.04);
 }
 
 .input-group input {
     width: 100%;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+    border-radius: 8px;
     border: 1px solid var(--border-color);
-    background: #f9f9f9;
+    background: #fdfdfd;
     font-size: 1rem;
 }
 
 .btn-primary {
     width: 100%;
-    padding: 15px;
-    background: var(--mc-green);
+    padding: 14px;
+    background: var(--text-main);
     color: white;
     font-weight: bold;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1.1rem;
-    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .hidden { display: none !important; }
-
