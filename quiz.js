@@ -9,7 +9,8 @@ const firebaseConfig = {
     projectId: "sentence-checker-1595d",
     storageBucket: "sentence-checker-1595d.firebasestorage.app",
     messagingSenderId: "987027897244",
-    appId: "1:987027897244:web:c80cba1feb361e41692659"
+    appId: "1:987027897244:web:c80cba1feb361e41692659",
+    measurementId: "G-WKKZ8PTCKQ"
 };
 
 const app = initializeApp(firebaseConfig);
