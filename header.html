@@ -1,26 +1,36 @@
 <header class="main-header">
-<div class="header-container">
+  <div class="header-container">
+    <div class="header-left">
+      <button id="menu-trigger" class="menu-trigger" aria-label="メニューを開く">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
 
-  <div class="header-left">
-    <button id="menu-btn" class="hamburger">
-      <span class="line"></span>
-      <span class="line"></span>
-      <span class="line"></span>
-    </button>
+    <div class="header-center">
+      <h1 class="main-title"><a href="index.html">マイクラマイスター検定</a></h1>
+    </div>
+
+    <div class="header-right">
+      <a href="auth.html" id="user-link" aria-label="アカウント">
+        <div id="user-icon" class="user-icon-circle"></div>
+      </a>
+    </div>
   </div>
-
-
-  <div class="header-center">
-    <h1 class="main-title">マイクラマイスター検定</h1>
-  </div>
-
-
-  <div class="header-right">
-    <a href="auth.html" id="user-link">
-      <div id="user-icon" class="user-icon-circle">
-     
-      </div>
-    </a>
-  </div>
-</div>
 </header>
+
+<nav id="side-menu" class="side-menu" aria-label="サイトメニュー">
+  <ul class="menu-list">
+    <li><a href="index.html">🏠 ホーム</a></li>
+    <li><a href="quiz.html?level=beginner">🟩 初級検定（Lv.1）</a></li>
+    <li><a href="quiz.html?level=intermediate">⬜ 中級検定（Lv.2）</a></li>
+    <li><a href="quiz.html?level=advanced">🟦 上級検定（Lv.3）</a></li>
+    <li><a href="mypage.html">👤 マイページ</a></li>
+    <li><a href="ranking.html">🏆 ランキング</a></li>
+    <li class="menu-sep"></li>
+    <li id="menu-login-item"><a href="auth.html">ログイン / 新規登録</a></li>
+    <li id="menu-logout-item" class="hidden"><a href="#" id="btn-menu-logout">ログアウト</a></li>
+  </ul>
+</nav>
+<div id="menu-overlay" class="menu-overlay"></div>

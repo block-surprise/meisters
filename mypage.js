@@ -18,36 +18,86 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// --- ランク定義（累計正解数。common.js / quiz.js と共通の基準） ---
+const RANK_LADDER = [
+    { name: "ネザライト", min: 120, icon: "🔥" },
+    { name: "ダイヤモンド", min: 80, icon: "💎" },
+    { name: "ゴールド", min: 50, icon: "🟡" },
+    { name: "アイアン", min: 20, icon: "⚙️" },
+    { name: "ストーン", min: 1, icon: "🪨" },
+    { name: "未受検", min: 0, icon: "🛡️" }
+];
+
+function rankFromTotal(total) {
+    for (const r of RANK_LADDER) {
+        if (total >= r.min) return r;
+    }
+    return RANK_LADDER[RANK_LADDER.length - 1];
+}
+
+function nextRankInfo(total) {
+    for (let i = 0; i < RANK_LADDER.length; i++) {
+        if (total >= RANK_LADDER[i].min) {
+            if (i === 0) return null;
+            const next = RANK_LADDER[i - 1];
+            return { name: next.name, remaining: next.min - total };
+        }
+    }
+    return null;
+}
+
 // ログイン状態の監視
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         // 1. 基本プロフィールの反映
         document.getElementById('display-name').innerText = user.displayName || "名無しのマイスター";
         document.getElementById('user-email').innerText = user.email;
-        
+
         const photoEl = document.getElementById('user-photo');
-        if (user.photoURL && photoEl) {
-            photoEl.style.backgroundImage = `url(${user.photoURL})`;
-            photoEl.style.backgroundSize = "cover";
+        if (photoEl) {
+            if (user.photoURL) {
+                photoEl.style.backgroundImage = `url(${user.photoURL})`;
+                photoEl.style.backgroundSize = "cover";
+                photoEl.style.backgroundPosition = "center";
+            } else {
+                photoEl.innerText = (user.displayName || user.email || "M").trim().charAt(0).toUpperCase();
+                photoEl.classList.add('initial-icon');
+            }
         }
 
-        // 2. Firestoreからスコアとランクを取得
+        // 2. Firestoreからスコアと進捗を取得
         try {
             const userRef = doc(db, "users", user.uid);
             const docSnap = await getDoc(userRef);
 
             if (docSnap.exists()) {
                 const data = docSnap.data();
-                // 画面上のスコアとランクを書き換え
-                if (document.getElementById('total-correct')) {
-                    document.getElementById('total-correct').innerText = data.totalCorrect || 0;
+                const total = data.totalCorrect || 0;
+                const rank = rankFromTotal(total);
+
+                const totalEl = document.getElementById('total-correct');
+                if (totalEl) totalEl.innerText = total;
+
+                const rankEl = document.getElementById('rank-name');
+                if (rankEl) rankEl.innerText = rank.name;
+
+                const badgeIconEl = document.getElementById('rank-badge');
+                if (badgeIconEl) badgeIconEl.innerText = rank.icon;
+
+                const nextEl = document.getElementById('next-rank-msg');
+                if (nextEl) {
+                    const next = nextRankInfo(total);
+                    nextEl.innerText = next
+                        ? `次のランク「${next.name}」まであと ${next.remaining} 問`
+                        : "最高ランク到達！おめでとうございます";
                 }
-                if (document.getElementById('rank-name')) {
-                    document.getElementById('rank-name').innerText = data.rank || "未受検";
-                }
-                
-                // バッジの見た目を更新する（関数は下に定義）
-                updateBadgeUI(data.rank);
+
+                updateBadgeUI(data.clearedLevels || {});
+            } else {
+                const rankEl = document.getElementById('rank-name');
+                if (rankEl) rankEl.innerText = "未受検";
+                const nextEl = document.getElementById('next-rank-msg');
+                if (nextEl) nextEl.innerText = "まずは初級検定に挑戦しよう！";
             }
         } catch (error) {
             console.error("データ取得エラー:", error);
@@ -59,28 +109,18 @@ onAuthStateChanged(auth, async (user) => {
     }
 });
 
-// ランクに応じてバッジを明るくする演出
-function updateBadgeUI(rank) {
-    const badges = {
-        "ストーン": 0,
-        "アイアン": 1,
-        "ダイヤモンド": 2
-    };
-    
+// 合格したレベルのバッジを点灯させる
+function updateBadgeUI(clearedLevels) {
+    const levelOrder = ["beginner", "intermediate", "advanced"];
     const badgeElements = document.querySelectorAll('.badge-item');
-    const rankIndex = badges[rank];
 
-    if (rankIndex !== undefined) {
-        // 獲得したランク以下のバッジから 'locked' クラスを外す
-        badgeElements.forEach((el, index) => {
-            if (index <= rankIndex) {
-                el.classList.remove('locked');
-                el.style.border = "2px solid #388e3c"; // 合格色
-                el.style.color = "#333";
-                el.style.background = "#fff";
-            }
-        });
-    }
+    badgeElements.forEach((el, index) => {
+        const level = el.dataset.level || levelOrder[index];
+        if (level && clearedLevels[level]) {
+            el.classList.remove('locked');
+            el.classList.add('unlocked');
+        }
+    });
 }
 
 // ログアウト処理

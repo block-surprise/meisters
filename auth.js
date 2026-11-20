@@ -107,8 +107,11 @@ if (btnMain) {
             console.error("Auth Error:", error);
             let msg = "エラーが発生しました。";
             if (error.code === 'auth/email-already-in-use') msg = "このメールアドレスは既に使われています。";
-            if (error.code === 'auth/wrong-password') msg = "パスワードが間違っています。";
+            if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') msg = "メールアドレスまたはパスワードが間違っています。";
             if (error.code === 'auth/weak-password') msg = "パスワードは6文字以上で設定してください。";
+            if (error.code === 'auth/invalid-email') msg = "メールアドレスの形式が正しくありません。";
+            if (error.code === 'auth/too-many-requests') msg = "試行回数が多すぎます。しばらく待ってからお試しください。";
+            if (error.code === 'auth/network-request-failed') msg = "通信エラーが発生しました。接続を確認してください。";
             alert(msg);
         }
     });

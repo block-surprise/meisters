@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>マイページ | マイくらマイスター検定</title>
+    <title>マイページ | マイクラマイスター検定</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,28 +29,29 @@
                 <span class="stat-label">現在の称号</span>
                 <div class="rank-display">
                     <span id="rank-badge" class="badge-icon">🛡️</span>
-                    <h3 id="rank-name">アイアン</h3>
+                    <h3 id="rank-name">読み込み中...</h3>
                 </div>
+                <p id="next-rank-msg" class="next-rank-msg"></p>
             </div>
             <div class="stat-box">
-                <span class="stat-label">全問正解数</span>
-                <p class="stat-value"><span id="total-correct">0</span> / 100</p>
+                <span class="stat-label">累計正解数</span>
+                <p class="stat-value"><span id="total-correct">0</span> 問</p>
             </div>
         </div>
 
         <!-- 獲得バッジ・コレクション -->
         <section class="badge-section">
             <h3 class="sub-title">獲得済みバッジ</h3>
+            <p class="badge-note">各レベルの検定で7割以上正解すると合格バッジが付きます。</p>
             <div class="badge-list" id="badge-container">
-                <!-- 取得したバッジがここに並ぶ -->
-                <div class="badge-item locked"><span>初級</span></div>
-                <div class="badge-item locked"><span>中級</span></div>
-                <div class="badge-item locked"><span>上級</span></div>
+                <div class="badge-item locked" data-level="beginner"><span>🟩<br>初級</span></div>
+                <div class="badge-item locked" data-level="intermediate"><span>⬜<br>中級</span></div>
+                <div class="badge-item locked" data-level="advanced"><span>🟦<br>上級</span></div>
             </div>
         </section>
     </main>
 
-    <script src="common.js"></script>
+    <script type="module" src="common.js"></script>
     <script type="module" src="mypage.js"></script>
 </body>
 </html>

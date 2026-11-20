@@ -23,9 +23,15 @@
             <div class="question-box">
                 <h2 id="question-text">読み込み中...</h2>
             </div>
-            
+
             <div id="answer-options" class="options-grid">
                 <!-- ここにボタンが生成される -->
+            </div>
+
+            <!-- 回答後のフィードバック -->
+            <div id="feedback" class="feedback hidden">
+                <p id="feedback-text"></p>
+                <button id="next-btn" class="btn-primary">次の問題へ</button>
             </div>
         </section>
 
@@ -33,14 +39,19 @@
         <section id="result-container" class="quiz-card hidden">
             <h2 class="result-title">検定終了！</h2>
             <div class="result-score">
-                <span id="score-val">0</span> / 10
+                <span id="score-val">0</span> / <span id="total-val">10</span>
             </div>
+            <p id="result-pass-msg" class="pass-msg"></p>
             <p id="result-rank-msg"></p>
-            <button onclick="location.href='index.html'" class="btn-primary">ホームへ戻る</button>
+            <div class="btn-row">
+                <button onclick="location.reload()" class="btn-primary">もう一度挑戦</button>
+                <button onclick="location.href='mypage.html'" class="btn-primary btn-sub-style">マイページ</button>
+                <button onclick="location.href='index.html'" class="btn-primary btn-sub-style">ホームへ戻る</button>
+            </div>
         </section>
     </main>
 
-    <script src="common.js"></script>
+    <script type="module" src="common.js"></script>
     <script type="module" src="quiz.js"></script>
 </body>
 </html>

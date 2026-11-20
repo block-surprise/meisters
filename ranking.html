@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ランキング | マイクラマイスター検定</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main class="mypage-wrapper">
+        <section class="ranking-section">
+            <h2 class="section-title" style="margin-top: 20px;">🏆 マイスターランキング</h2>
+            <p class="ranking-note">累計正解数のランキングです。検定を受けると自動で記録されます。</p>
+            <div id="ranking-list" class="ranking-list">
+                <p class="ranking-status">読み込み中...</p>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="common.js"></script>
+    <script type="module" src="ranking.js"></script>
+</body>
+</html>
